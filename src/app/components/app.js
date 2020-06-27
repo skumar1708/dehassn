@@ -1,38 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
-import Form from "./Form";
+
+
+import { ROUTE_CHANGE } from "../actions"
+import AppContainer from "./appContainer";
+import { getSessionData } from "../utils";
 
 const initialState = {
-  route: "/" || window.location.pathname
+  payload: {
+    route: "/" || getSessionData("path")
+  }
 };
 
 const reducer = (state = initialState, action) => {
-  return state;
+
+  switch (action.type) {
+    case ROUTE_CHANGE:
+      const { route = "/" } = action.payload;
+      return {
+        route: route
+      };
+    default:
+      return { route };
+  }
 }
 
 const store = createStore(reducer);
 
-const App = (props) => {
-  console.log("store  are", store.getState().route);
-  const currRoute = store.getState().route;
-  let contentJSX = <Form />;
-  switch (currRoute) {
-    case "/":
-      contentJSX = <Form />;
-      break;
-    case "/dashboard":
-      contentJSX = <Dashboard />;
-      break;
-    default:
-      contentJSX = <Form />;
-      break;
-  }
-
+const App = () => {
+ 
   return (
     <Provider store={store}>
-      {contentJSX}
+      <AppContainer/>
     </Provider>
   );
 }

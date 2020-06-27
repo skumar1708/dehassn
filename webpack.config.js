@@ -13,6 +13,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
     entry: './src/app/index.js',
     output: {
+        publicPath: "/",
         path: path.resolve('dist'),
         filename: 'index_bundle.js'
     },
@@ -21,7 +22,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.jsx$/,
@@ -29,6 +30,13 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
+    },
+    devServer: {
+        contentBase: "./src",
+        hot: true,
+        port: 8080,
+        historyApiFallback: true
+    
     },
     plugins: [
         HtmlWebpackPluginConfig

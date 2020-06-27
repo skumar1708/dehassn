@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import { TextField } from '../TextField/';
 import { Button } from "../Button";
 import { FormRow } from './styles';
+import { changeRoute } from '../../actions';
+import { setSessionData, validateLogin } from "../../utils";
 
-class Form extends React.Component {
+class Form extends Component {
 
     constructor(props) {
         super(props);
@@ -26,8 +28,18 @@ class Form extends React.Component {
         });
     }
 
-    onClick() {
-        console.log(this.state["value_1"]);
+    logMeIn() {
+        const { dispatch } = this.props;
+        const { value_1: username, value_2: password } = this.state;
+
+        if(!username || !password) return alert("Please enter credentials!!")
+
+        if(validateLogin(username, password)) {
+            dispatch(changeRoute({ route: "/dashboard"}));
+            setSessionData("path", "/dashboard", 60 * 60);
+        } else {
+            return alert("Invalid login credentials");
+        }
     }
 
     render() {
@@ -52,7 +64,7 @@ class Form extends React.Component {
                 })}
                 <FormRow>
                     <Button label={"Login"} primary onClick={() => {
-                        return this.onClick();
+                        return this.logMeIn();
                     }} />
                 </FormRow>
             </React.Fragment>
