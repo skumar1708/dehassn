@@ -19,7 +19,7 @@ const Arrivals = () => {
         //As libgen apis were donw so used mock data
         (async () => {
             // setLoading(true);
-            let response = await getData("http://demo7767767.mockable.io/libgen", {});//libData;
+            let response = await getData("https://demo7767767.mockable.io/libgen", {});//libData;
             // setLoading(false);
             setArrivals(response.data.sort(() => .5 - Math.random()).slice(0, 10));
             setLoading(false);

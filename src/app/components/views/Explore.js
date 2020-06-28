@@ -34,7 +34,7 @@ const Explore = () => {
     const onSearchClick = async () => {
         if(!searchText) return alert("please enter keyword to search");
         setLoading(true);
-        let response = await getData("http://demo7767767.mockable.io/libgen", options);//libData;
+        let response = await getData("https://demo7767767.mockable.io/libgen", options);//libData;
         setLoading(false);
         setData(response.data);
         // setData(response);
