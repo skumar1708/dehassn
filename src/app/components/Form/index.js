@@ -46,7 +46,6 @@ class Form extends Component {
 
     render() {
         const { formConfig } = this.state;
-
         return (
             <React.Fragment>
                 {formConfig.map(item => {
