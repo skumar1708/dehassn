@@ -5,9 +5,13 @@ import { StyledTab } from './styles';
 const HeaderBar = styled(({ config }) => {
 
     return (
-        <div>{
+        <div style={{ height: "80px" }}>{
             config.map(item => {
-                return <StyledTab key={item.label.toLowerCase()} onClick={item.onClick} {...item}>{item.label}</StyledTab>;
+                return <StyledTab
+                    key={item.label.toLowerCase()}
+                    onClick={item.onClick} {...item}>
+                    {item.label}
+                </StyledTab>;
             })
         }</div>
     )

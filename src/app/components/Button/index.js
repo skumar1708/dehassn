@@ -5,11 +5,12 @@ import { StyledButton } from './styles';
 const Button = styled(({
     primary,
     label,
-    onClick
+    onClick,
+    padding
 }) => {
 
   return (
-  <StyledButton onClick={onClick} primary={primary}>{label}</StyledButton>
+  <StyledButton onClick={onClick} primary={primary} padding={padding}>{label}</StyledButton>
   )
 })``
 Button.propTypes = {

@@ -5,7 +5,7 @@ import { TextField } from '../TextField/';
 import { Button } from "../Button";
 import { FormRow } from './styles';
 import { changeRoute } from '../../actions';
-import { setSessionData, validateLogin } from "../../utils";
+import { setSessionData, validateLogin, setUserData } from "../../utils";
 
 class Form extends Component {
 
@@ -37,6 +37,8 @@ class Form extends Component {
         if(validateLogin(username, password)) {
             dispatch(changeRoute({ route: "/dashboard"}));
             setSessionData("path", "/dashboard", 60 * 60);
+            setUserData("_loggedinuser", username);
+            setUserData("_hash", 1);
         } else {
             return alert("Invalid login credentials");
         }

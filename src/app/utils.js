@@ -28,6 +28,14 @@ export const getSessionData = (key) => {
 	return item.value
 };
 
+//As it was not clear from PRD so I put it as persistent, independent of expiry date
+export const setUserData = (key, data) => {
+	localStorage.setItem(key, JSON.stringify(data));
+};
+export const getUserData = (key) => {
+	return JSON.parse(localStorage.getItem(key));
+};
+
 //Below is a serverside validation, with enhanced authantication approaches i.e. oAuth or jwt
 export const validateLogin = (user, pass) => {
     const dbusers = {
@@ -37,3 +45,18 @@ export const validateLogin = (user, pass) => {
 
     return dbusers[user] == pass;
 }
+
+
+export const debounce = (func, wait) => {
+    let timeout;
+  
+    return function executedFunction(...args) {
+      const later = () => {
+        timeout = null;
+        func(...args);
+      };
+  
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
