@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev-start": "webpack-dev-server --mode development",
     "start": "PROD=true node server.js",
     "build": "webpack",
     "client": "npm start",

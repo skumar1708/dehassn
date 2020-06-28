@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require('body-parser');
+const path = require('path');
 const http = require("http");
 var libgen = require("libgen")
 
@@ -20,7 +21,7 @@ const options = {
 
 app.use(express.static(__dirname + "/public", options));
 
-app.get('/', (req, res) => {
+app.get(['/', '/dashboard'], (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
