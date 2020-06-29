@@ -4,4 +4,4 @@
 - `npm install`
 - `npm run dev-start`
 
-point your browser to http://localhost:8080
+point your browser to <a href="http://localhost:8080" target="_blank"> http://localhost:8080</a>
